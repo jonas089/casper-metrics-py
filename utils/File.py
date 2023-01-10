@@ -52,6 +52,7 @@ class FileList:
                 return self.filenames[index - 1:]
     # creates a new set of filenames for division of deploys
     # keep in mind to prefix the path of the files when using this fn
+    ''' UNUSED, but potentially useful logic.
     def new_set(start_height, end_height, steps):
         _start_height = start_height
         _end_height = start_height + steps
@@ -63,3 +64,4 @@ class FileList:
             _start_height += steps
             _end_height += steps
         return set
+    '''
