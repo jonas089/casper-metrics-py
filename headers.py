@@ -1,5 +1,5 @@
 from utils.casper import Client
-from utils.File import File, Tree
+from utils.File import File, FileList
 from config import start_height, end_height, steps, node_ip
 from constants import block_path
 import os, time
@@ -24,7 +24,7 @@ def auto_download():
     start_time = time.time()
     _start_height = start_height
     _end_height = start_height + steps
-    while _end_height<end_height:
+    while _end_height<=end_height:
         print("Downloading({_start_height}/{_end_height})".format(_start_height=_start_height, _end_height=_end_height))
         download_blocks(_start_height, _end_height)
 
@@ -34,8 +34,8 @@ def auto_download():
         _end_height += steps
 
 # Analyze data in Header files
-def prep_header_TREE():
-    T = Tree(base_path)
+def prep_header_FileList():
+    T = FileList(base_path)
     files = T.filter_from(0)
     with_path = []
     for f in files:
@@ -43,7 +43,7 @@ def prep_header_TREE():
     return with_path
 
 def num_deploys_per_month(YYMM, type):
-    f = prep_header_TREE()
+    f = prep_header_FileList()
     c = 0
     for _f in f:
         file = File('{f}'.format(f=_f))

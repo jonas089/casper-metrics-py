@@ -16,7 +16,7 @@ class File:
             return False
         with open(self.path, 'wb') as f:
             pickle.dump(data, f)
-class Tree:
+class FileList:
     def __init__(self, path):
         self.filenames = os.listdir(path)
     def filter_from(self, start_height):
@@ -50,3 +50,16 @@ class Tree:
             index += 1
             if filename.startswith(str(start_height)):
                 return self.filenames[index - 1:]
+    # creates a new set of filenames for division of deploys
+    # keep in mind to prefix the path of the files when using this fn
+    def new_set(start_height, end_height, steps):
+        _start_height = start_height
+        _end_height = start_height + steps
+        set = []
+        while _end_height <= end_height:
+            set.append('{_start_height}-{_end_height}.xml'.format(_start_height=_start_height, _end_height=_end_height))
+            if _start_height == start_height and str(_start_height)[len(start_height) - 1] = '0':
+                _start_height += 1
+            _start_height += steps
+            _end_height += steps
+        return set
