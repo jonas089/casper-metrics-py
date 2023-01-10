@@ -42,6 +42,8 @@ def prep_header_FileList():
         with_path.append('{base_path}{f}'.format(base_path=base_path,f=f))
     return with_path
 
+# Count the amount of deploys for a given Month
+# YYMM: 2022-05 or equiv.
 def num_deploys_per_month(YYMM, type):
     f = prep_header_FileList()
     c = 0
@@ -52,6 +54,8 @@ def num_deploys_per_month(YYMM, type):
                 c += len(block['body'][type])
     return c
 
+# Count the amount of blocks for a given Month
+# YYMM: 2022-05 or equiv.
 def num_blocks_per_month(YYMM):
     f = prep_header_FileList()
     c = 0
