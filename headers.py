@@ -39,5 +39,16 @@ def prep_header_TREE():
     files = T.filter_from(0)
     with_path = []
     for f in files:
-        with_path.append('{base_path}/{f}'.format(base_path=base_path,f=f))
+        with_path.append('{base_path}{f}'.format(base_path=base_path,f=f))
     return with_path
+
+def num_deploys_per_month(YYMM, type):
+    f = prep_header_TREE()
+    c = 0
+    for _f in f:
+        file = File('{f}'.format(f=_f))
+        print(file.path)
+        for block in file.read():
+            if block['header']['timestamp'][:7] == YYMM:
+                c += len(block['body'][type])
+    return c

@@ -1,11 +1,11 @@
 import os, pickle
 class File:
     def __init__(self, path):
-        self.path = '{path}.xml'.format(path=path)
+        self.path = '{path}'.format(path=path)
     def create(self):
-        if os.path.exists(self.path):
+        if os.path.exists('{path}.xml'.format(path=self.path)):
             return False
-        open(self.path, 'x')
+        open('{path}.xml'.format(path=self.path), 'x')
     def read(self):
         if not os.path.exists(self.path):
             return False
