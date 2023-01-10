@@ -47,8 +47,17 @@ def num_deploys_per_month(YYMM, type):
     c = 0
     for _f in f:
         file = File('{f}'.format(f=_f))
-        print(file.path)
         for block in file.read():
             if block['header']['timestamp'][:7] == YYMM:
                 c += len(block['body'][type])
+    return c
+
+def num_blocks_per_month(YYMM):
+    f = prep_header_FileList()
+    c = 0
+    for _f in f:
+        file = File('{f}'.format(f=_f))
+        for block in file.read():
+            if block['header']['timestamp'][:7] == YYMM:
+                c += 1
     return c

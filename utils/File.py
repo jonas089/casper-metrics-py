@@ -58,7 +58,7 @@ class FileList:
         set = []
         while _end_height <= end_height:
             set.append('{_start_height}-{_end_height}.xml'.format(_start_height=_start_height, _end_height=_end_height))
-            if _start_height == start_height and str(_start_height)[len(start_height) - 1] = '0':
+            if _start_height == start_height and str(_start_height)[len(start_height) - 1] == '0':
                 _start_height += 1
             _start_height += steps
             _end_height += steps
