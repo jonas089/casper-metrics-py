@@ -20,7 +20,15 @@ def download_blocks(_from, to):
 
     headers = []
     for i in range(_from, to + 1):
-        headers.append(cli.get_block(i))
+        is_processed = False
+        while is_processed == False:
+            try:
+                headers.append(cli.get_block(i))
+                is_processed = True
+            except Exception as ConnErr:
+                print('[Warning] Connection: Failed to process Block')
+                time.sleep(0.5)
+
     f.create()
     f.write(headers)
 
