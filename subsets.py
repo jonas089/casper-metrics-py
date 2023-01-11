@@ -11,6 +11,7 @@ def timestamp_deploy_subset(type='transfer_hashes'):
     # max: 1000*1000 in memory
     _fc = 0
     data = {}
+    print(f)
     for _f in f:
         file = File('{f}'.format(f=_f))
         for block in file.read():

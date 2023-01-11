@@ -28,7 +28,7 @@ def download_blocks(_from, to):
             except Exception as ConnErr:
                 print('[Warning] Connection: Failed to process Block')
                 time.sleep(0.5)
-
+    print("Headers: ", headers)
     f.create()
     f.write(headers)
 

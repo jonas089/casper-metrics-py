@@ -12,9 +12,9 @@ class File:
         with open(self.path, 'rb') as f:
             return pickle.load(f)
     def write(self, data):
-        if not os.path.exists(self.path):
+        if not os.path.exists('{path}.xml'.format(path=self.path)):
             return False
-        with open(self.path, 'wb') as f:
+        with open('{path}.xml'.format(path=self.path), 'wb') as f:
             pickle.dump(data, f)
 class FileList:
     def __init__(self, path):
