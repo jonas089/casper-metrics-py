@@ -2,6 +2,7 @@ from utils.File import File, FileList
 from constants import block_path, ts_dp_path
 from headers import prep_header_FileList
 from utils.csprtime import to_date_time, to_unix
+import os
 
 # map timestamps and deploys -> outputs found in ./data/tsdp/
 def timestamp_deploy_subset(type='transfer_hashes'):
@@ -31,3 +32,7 @@ def timestamp_deploy_subset(type='transfer_hashes'):
     new_file = File('{path}{f}'.format(path=ts_dp_path, f=str(_fc)))
     new_file.create()
     new_file.write(data)
+
+def reset():
+    os.rmdir(ts_dp_path)
+    os.mkdir(ts_dp_path)

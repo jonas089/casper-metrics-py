@@ -12,11 +12,15 @@ if not os.path.exists(base_path):
 
 def download_blocks(_from, to):
     fname = '{_from}-{to}'.format(_from=_from ,to=to)
+    path = '{base_path}{fname}'.format(base_path=base_path, fname=fname)
+    f = File('{path}'.format(path=path))
+    if os.path.exists('{path}.xml'.format(path=path)):
+        time.sleep(0.1)
+        return None
+
     headers = []
     for i in range(_from, to + 1):
         headers.append(cli.get_block(i))
-    path = '{base_path}{fname}'.format(base_path=base_path, fname=fname)
-    f = File('{path}'.format(path=path))
     f.create()
     f.write(headers)
 
@@ -24,14 +28,17 @@ def auto_download():
     start_time = time.time()
     _start_height = start_height
     _end_height = start_height + steps
+    _total = ((end_height-_end_height)/steps)
+    progress_bar = tqdm(total=int(_total))
+    progress_bar.set_description("[Downloading] Block Headers:")
     while _end_height<=end_height:
-        print("Downloading({_start_height}/{_end_height})".format(_start_height=_start_height, _end_height=_end_height))
-        download_blocks(_start_height, _end_height)
-
+        round_result = download_blocks(_start_height, _end_height)
         if _start_height == start_height and (str(_start_height)[len(str(start_height)) - 1] == '0'):
             _start_height += 1
         _start_height += steps
         _end_height += steps
+        progress_bar.update(1)
+
 
 # Analyze data in Header files
 def prep_header_FileList():

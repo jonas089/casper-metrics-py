@@ -11,11 +11,11 @@ print(T.filenames)
 print(T.filter_from('constants'))
 '''
 # download data according to config.py
-# auto_download()
+auto_download()
 
 # Count deploys in Blocks of Month YYMM -> specify the deploy_type (transfer_hashes or deploy_hashes)
 # print(num_deploys_per_month('2021-04', 'transfer_hashes'))
 
 
 from subsets import timestamp_deploy_subset
-timestamp_deploy_subset()
+#timestamp_deploy_subset()
