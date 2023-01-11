@@ -19,6 +19,7 @@ class File:
 class FileList:
     def __init__(self, path):
         self.filenames = os.listdir(path)
+    '''
     def filter_from(self, start_height):
         # custom sorting algorithm
         _From = []
@@ -50,6 +51,21 @@ class FileList:
             index += 1
             if filename.startswith(str(start_height)):
                 return self.filenames[index - 1:]
+    '''
+    # superior implementation of filter_from
+    def filter_from_GPT(self, start_height):
+        # ChatGPT improved version of filter_from
+        # I clearly have a lot to learn :p
+        # Key takeaways:
+        # get used to lambda functions ( closures ) when programming algorithms
+        # use more built-in functions and less custom iteration
+
+        # sort the filenames by the numeric value before the '-' character
+        self.filenames = sorted(self.filenames, key=lambda x: int(x.split('-')[0]))
+        # apply filter to sorted files.
+        for i,filename in enumerate(self.filenames):
+            if int(filename.split('-')[0]) >= start_height:
+                return self.filenames[i:]
     # creates a new set of filenames for division of deploys
     # keep in mind to prefix the path of the files when using this fn
     ''' UNUSED, but potentially useful logic.
