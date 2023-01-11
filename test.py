@@ -1,4 +1,3 @@
-# will later be lib.py
 import SETUP
 from headers import auto_download, prep_header_FileList, num_deploys_per_month
 from constants import block_path
@@ -18,7 +17,7 @@ print(T.filter_from('constants'))
 
 
 from subsets import timestamp_deploy_subset
-#timestamp_deploy_subset()
+timestamp_deploy_subset()
 
 ''' Chat GPT function test
 T = FileList('./data/blocks/0-150000-1000/')

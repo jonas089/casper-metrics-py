@@ -52,8 +52,10 @@ class FileList:
             if filename.startswith(str(start_height)):
                 return self.filenames[index - 1:]
     '''
+    def set_filenames(self, filenames):
+        self.filenames = filenames
     # superior implementation of filter_from
-    def filter_from_GPT(self, start_height):
+    def filter_from(self, start_height):
         # ChatGPT improved version of filter_from
         # I clearly have a lot to learn :p
         # Key takeaways:
@@ -64,10 +66,15 @@ class FileList:
         self.filenames = sorted(self.filenames, key=lambda x: int(x.split('-')[0]))
         # apply filter to sorted files.
         for i,filename in enumerate(self.filenames):
-            if int(filename.split('-')[0]) >= start_height:
+            if int(filename.split('-')[0]) <= start_height:
                 return self.filenames[i:]
     # creates a new set of filenames for division of deploys
     # keep in mind to prefix the path of the files when using this fn
+    def filter_to(self, end_height):
+        self.filenams = sorted(self.filenames, key=lambda x: int(x.split('-')[0]))
+        for i, filename in enumerate(self.filenames):
+            if int(filename.split('-')[0]) >= start_height:
+                return self.filenames[:i]
     ''' UNUSED, but potentially useful logic.
     def new_set(start_height, end_height, steps):
         _start_height = start_height

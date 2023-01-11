@@ -51,6 +51,7 @@ def auto_download():
 # Analyze data in Header files
 def prep_header_FileList():
     T = FileList(base_path)
+    # using entire dataset
     files = T.filter_from(0)
     with_path = []
     for f in files:
