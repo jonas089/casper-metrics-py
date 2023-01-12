@@ -28,7 +28,9 @@ def download_blocks(_from, to):
             except Exception as ConnErr:
                 print('[Warning] Connection: Failed to process Block')
                 time.sleep(0.5)
-    print("Headers: ", headers)
+    if len(headers) == 0:
+        print("[Fatal]: Empty Block")
+        return False
     f.create()
     f.write(headers)
 
@@ -41,6 +43,8 @@ def auto_download():
     progress_bar.set_description("[Downloading] Block Headers:")
     while _end_height<=end_height:
         round_result = download_blocks(_start_height, _end_height)
+        if round_result == False:
+            break
         if _start_height == start_height and (str(_start_height)[len(str(start_height)) - 1] == '0'):
             _start_height += 1
         _start_height += steps
