@@ -16,6 +16,8 @@ class File:
             return False
         with open('{path}.xml'.format(path=self.path), 'wb') as f:
             pickle.dump(data, f)
+
+# use only for block header files
 class FileList:
     def __init__(self, path):
         self.filenames = os.listdir(path)
