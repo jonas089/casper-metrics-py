@@ -4,6 +4,7 @@ from utils.csprtime import to_date_time, to_unix
 import os, pycspr
 from utils.casper import Client
 from config import node_ip
+from utils.csprtime import to_unix
 cli = Client(node_ip, 8888, 7777, 9999)
 '''
     This file parses a LOCAL tsdp dataset ( see subsets.py ) to retrieve deploy hashs in a monthly fashion:
@@ -21,11 +22,10 @@ cli = Client(node_ip, 8888, 7777, 9999)
         3. Test this function
 '''
 
-def calc(from_t, to_t):
+def calc(YYMM):
     successfull_deploys_gas_consumed = 0
     failed_deploys_gas_consumed = 0
     _FileList = os.listdir(ts_dp_path)
-    print(_FileList)
     for f in _FileList:
         _f = File('{base_path}{f}'.format(base_path=ts_dp_path, f=f))
         __f = _f.read()
@@ -43,22 +43,25 @@ def calc(from_t, to_t):
                     d = cli.get_deploy(deploy)
                     # initialize for lifetime reasons
                     gas_consumed = 0
+                    status = True
                     try:
-                        gas_consumed = d['execution_results'][0]['result']['Success']['cost']
+                        gas_consumed = int(d['execution_results'][0]['result']['Success']['cost'])
                     except Exception as Failed:
-                        gas_consumed = d['execution_results'][0]['result']['Failure']['cost']
+                        gas_consumed = int(d['execution_results'][0]['result']['Failure']['cost'])
+                        status = False
+                    if YYMM == t[:7]:
+                        if status == True:
+                            successfull_deploys_gas_consumed += gas_consumed
+                        else:
+                            failed_deploys_gas_consumed += gas_consumed
                     # convert timestamp
                     # compare to from_t and to_t
                     # if in range: add gas to total consumption
     return (successfull_deploys_gas_consumed, failed_deploys_gas_consumed)
 
-
-'''
-test
-'''
-def test():
-    calc(0, 0)
-test()
+def consumed_gas_in_range(YYMM):
+    calc(YYMM)
+#consumed_gas_in_range('2021-07')
 
 
 
