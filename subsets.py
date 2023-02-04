@@ -5,7 +5,7 @@ from utils.csprtime import to_date_time, to_unix
 import os
 
 # map timestamps and deploys -> outputs found in ./data/tsdp/
-def generate_timestamp_deploy_subset(type='transfer_hashes'):
+def generate_timestamp_deploy_subset(type):
     f = prep_header_FileList()
     _block_limit = 1000
     # max: 1000*1000 in memory
