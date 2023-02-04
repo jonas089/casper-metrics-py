@@ -10,24 +10,15 @@ T = FileList('./')
 print(T.filenames)
 print(T.filter_from('constants'))
 '''
-# download data according to config.py
+# download data from node according to config.py => override existing set or create new set.
 # auto_download()
 
-# Count deploys in Blocks of Month YYMM -> specify the deploy_type (transfer_hashes or deploy_hashes)
-# print(num_deploys_per_month('2021-04', 'transfer_hashes'))
-
-'''
+''' Generate a subset to calculate gas consumption from ( see subsets.py and gas_consumption.py )
+# on demand more subsets and functionality can be implemented
+# for now only subset is "tsdp" and is used in gas_consumption.py
 from subsets import generate_timestamp_deploy_subset
 generate_timestamp_deploy_subset()
 '''
-
-
-''' Chat GPT function test
-T = FileList('./data/blocks/0-150000-1000/')
-filter_from = T.filter_from(2001)
-filter_from_GPT = T.filter_from_GPT(2001)
-assert(filter_from==filter_from_GPT)
-''' # passed.
 
 ''' Gas consumption Example '''
 # Example: we want to know gas consumed and amount of deploys of a given type ( transfer / deploy )
