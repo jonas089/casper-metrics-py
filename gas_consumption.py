@@ -19,13 +19,34 @@ import os, pycspr
         3. Test this function
 '''
 
-def calc():
+def calc(from_t, to_t):
     gas = 0
     _FileList = os.listdir(ts_dp_path)
+    print(_FileList)
     for f in _FileList:
         _f = File('{base_path}{f}'.format(base_path=ts_dp_path, f=f))
-        for t in _f.read():
+        __f = _f.read()
+        for t in __f:
             # get all deploys mapped to timestamp and query gas consumed if timestamp in desired range.
 
+            # timestamp
+            #print(t)
 
+            # list of deploys
+            #print(__f[t])
+
+            if not __f[t] == []:
+                for deploy in __f[t]:
+                    # get deploy
+                    # convert timestamp
+                    # compare to from_t and to_t
+                    # if in range: add gas to total consumption
     return gas
+
+
+'''
+test
+'''
+def test():
+    calc(0, 0)
+test()
