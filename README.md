@@ -29,4 +29,13 @@ according to config.py \
 The larger the range of blocks, the longer this will take. \
 Time it took to download blocks 0 - 150000: 90 minutes. \
 Expect a few hours to download a complete dataset. \
-Generating subset(s) should be much faster.
+Generating subset(s) should be much faster. \
+
+
+Quickstart desired Output:
+```
+Total Deploys processed:  5488
+Total Deploys:  507
+[Building] tsdp dataset 2021-05: 100%|█████████████████████████████████████████| 151/151 [08:51<00:00,  3.52s/it]
+Consumed Gas (succ, fail):  (884123004560, 131214727109)
+```
