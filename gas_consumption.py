@@ -29,7 +29,7 @@ def consumed_gas_in_range(YYMM):
     failed_deploys_gas_consumed = 0
     _FileList = os.listdir(ts_dp_path)
     progress_bar = tqdm(total=len(_FileList))
-    progress_bar.set_description("[Processing] tsdp dataset to analyse gas consumed in {date}:".format(date=YYMM))
+    progress_bar.set_description("[Building] tsdp dataset {date}".format(date=YYMM))
     for f in _FileList:
         _f = File('{base_path}{f}'.format(base_path=ts_dp_path, f=f))
         __f = _f.read()

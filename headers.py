@@ -40,7 +40,7 @@ def auto_download():
     _end_height = start_height + steps
     _total = ((end_height-_end_height)/steps)
     progress_bar = tqdm(total=int(_total))
-    progress_bar.set_description("[Downloading] Block Headers:")
+    progress_bar.set_description("[Downloading] Block Headers")
     while _end_height<=end_height:
         round_result = download_blocks(_start_height, _end_height)
         if round_result == False:

@@ -18,3 +18,15 @@ A measure that can be taken from execution results is the average gas cost per d
 A subset stores temporary data in any directory ( not "blocks" ) in ./data/ \
 The "blocks" directory is reserved for block headers downloaded from a peer and stored locally ( permanently ) \
 Subsets are useful to avoid intense memory usage when parsing a large load of block headers.
+
+## Quickstart
+quickstart.py:
+1. downloads dataset
+2. creates subset
+3. counts total deploys of given type
+4. analyses gas consumption in deploys
+according to config.py \
+The larger the range of blocks, the longer this will take. \
+Time it took to download blocks 0 - 150000: 90 minutes. \
+Expect a few hours to download a complete dataset. \
+Generating subset(s) should be much faster.
