@@ -11,7 +11,7 @@ Blocks are downloaded from a node_ip ( see config ) and stored in ./data/blocks/
 
 Block headers can be parsed to count deploys in a given Block or perform other useful operations. \
 Deploy hashs in Blocks can be queried using the pycspr library to further analyse execution results. \
-A measure that can be taken from execution results is the average gas cost per deploy / block / time interval. \
+A measure that can be taken from execution results is the average gas cost per deploy / block / time interval
 
 ## 3. Subsets
 
@@ -29,7 +29,7 @@ according to config.py \
 The larger the range of blocks, the longer this will take. \
 Time it took to download blocks 0 - 150000: 90 minutes. \
 Expect a few hours to download a complete dataset. \
-Generating subset(s) should be much faster. \
+Generating subset(s) should be much faster.
 
 
 Quickstart desired Output:
